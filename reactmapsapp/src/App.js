@@ -51,10 +51,20 @@ class App extends Component {
 		});
 
 		this.state.venues.map((eachVenue) => {
+			var contentString = `${eachVenue.venue.name}`;
+
+			var infowindow = new window.google.maps.InfoWindow({
+				content: contentString
+			});
+
 			const marker = new window.google.maps.Marker({
 				position: { lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng },
 				map: map,
 				title: eachVenue.venue.name
+			});
+
+			marker.addListener('click', function() {
+				infowindow.open(map, marker)
 			});
 		});
 	};
