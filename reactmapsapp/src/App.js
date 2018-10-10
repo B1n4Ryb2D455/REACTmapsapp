@@ -48,14 +48,12 @@ class App extends Component {
 		const map = new window.google.maps.Map(document.getElementById('map'), {
 			center: { lat: 28.5728722, lng: -80.6489808 },
 			zoom: 10
-		});
+    });
+
+    	const infowindow = new window.google.maps.InfoWindow();
 
 		this.state.venues.map((eachVenue) => {
-			var contentString = `${eachVenue.venue.name}`;
-
-			var infowindow = new window.google.maps.InfoWindow({
-				content: contentString
-			});
+			const contentString = `${eachVenue.venue.name}`;
 
 			const marker = new window.google.maps.Marker({
 				position: { lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng },
@@ -64,6 +62,9 @@ class App extends Component {
 			});
 
 			marker.addListener('click', function() {
+
+        infowindow.setContent(contentString)
+
 				infowindow.open(map, marker)
 			});
 		});
@@ -71,7 +72,8 @@ class App extends Component {
 
 	render() {
 		return (
-			<main>
+      <main>
+        <sidebar id="sidebar" />
 				<div id="map" />
 			</main>
 		);
