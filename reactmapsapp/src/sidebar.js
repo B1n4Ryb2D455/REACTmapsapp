@@ -1,7 +1,7 @@
 import React, { component } from "react";
-import venuelist from "./venuelist";
+import venueList from "./venueList";
 
-export default class sidebar extends Component {
+export default class sideBar extends Component {
     render() {
         return(<div className="sideBar">
             <venuelist />

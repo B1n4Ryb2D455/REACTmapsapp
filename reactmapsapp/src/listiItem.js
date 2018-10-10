@@ -1,6 +1,6 @@
 import React, { component } from "react";
 
-export default class listitem extends Component {
+export default class listItem extends Component {
     render() {
         return (<li className="listItem">
         This is where words go

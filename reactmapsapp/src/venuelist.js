@@ -1,11 +1,11 @@
 import React, { component } from "react";
-import listitem from "./listitem";
+import listitem from "./listItem";
 
-export default class venuelist extends Component {
+export default class venueList extends Component {
     render() {
         return (
             <ol className="venueList">
-            <listitem />
+            <listItem />
             </ol>
         )
     }
