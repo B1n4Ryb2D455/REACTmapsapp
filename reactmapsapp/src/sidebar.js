@@ -1,10 +1,11 @@
-import React, { component } from "react";
-import venueList from "./venueList";
+import React, { Component } from 'react';
+import VenueList from './VenueList';
 
-export default class sideBar extends Component {
+export default class SideBar extends Component {
     render() {
         return(<div className="sideBar">
-            <venuelist />
-        </div>)
+            <input type={"search"} id={"search"} placeholder={"Filter Venues"} />
+                <VenueList />
+        </div>);
     }
 }

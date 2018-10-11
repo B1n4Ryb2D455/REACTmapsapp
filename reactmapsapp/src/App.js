@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import SideBar from './SideBar';
 
 class App extends Component {
 	state = {
@@ -48,9 +49,9 @@ class App extends Component {
 		const map = new window.google.maps.Map(document.getElementById('map'), {
 			center: { lat: 28.5728722, lng: -80.6489808 },
 			zoom: 10
-    });
+		});
 
-    	const infowindow = new window.google.maps.InfoWindow();
+		const infowindow = new window.google.maps.InfoWindow();
 
 		this.state.venues.map((eachVenue) => {
 			const contentString = `${eachVenue.venue.name}`;
@@ -62,10 +63,9 @@ class App extends Component {
 			});
 
 			marker.addListener('click', function() {
+				infowindow.setContent(contentString);
 
-        infowindow.setContent(contentString)
-
-				infowindow.open(map, marker)
+				infowindow.open(map, marker);
 			});
 		});
 	};
@@ -73,7 +73,7 @@ class App extends Component {
 	render() {
 		return (
       <main>
-        <sidebar id="sideBar" />
+        <SideBar />
 				<div id="map" />
 			</main>
 		);
