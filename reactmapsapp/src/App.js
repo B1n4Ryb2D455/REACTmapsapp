@@ -3,6 +3,9 @@ import './App.css';
 import axios from 'axios';
 import SideBar from './SideBar';
 
+// tutorial https://youtu.be/lDVaZY0aG2w
+// tutorial https://youtu.be/ywdxLNjhBYw
+
 class App extends Component {
 	state = {
 		venues: []
