@@ -72,8 +72,8 @@ class App extends Component {
 
 	render() {
 		return (
-      <main>
-        <SideBar />
+      <main id="main">
+        <SideBar id="sideBar" />
 				<div id="map" />
 			</main>
 		);
