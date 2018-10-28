@@ -35,9 +35,39 @@
 	}
 }
 
+ol.venueList {
+  padding: 1rem;
+  }
+
+.sideBar {
+  font-size: inherit;
+}
+
+.venueList {
+  padding: 1rem;
+}
+
+li.listItem {
+  list-style: none;
+  font-size: 1rem;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  margin-top: 1rem;
+  padding: .5rem;
+  cursor: pointer;
+	}
+
+ul {
+	list-style-type: none;
+	font-size: inherit;
+  padding: 10px;
+  padding-top: 0px;
+
+}
+
 #main {
   display: flex;
-  flex-flow: row-reverse;
+	flex-flow: row-reverse;
+	font-size: 1rem;
 }
 
 #map {

@@ -13,7 +13,6 @@ class App extends Component {
 
 	componentDidMount() {
 		this.getVenues();
-		// this.renderMap()
 	}
 
 	renderMap = () => {
@@ -57,7 +56,7 @@ class App extends Component {
 		const infowindow = new window.google.maps.InfoWindow();
 
 		this.state.venues.map((eachVenue) => {
-			const contentString = `${eachVenue.venue.name}`;
+			const contentString = `${eachVenue.venue.name}` + `${eachVenue.venue.location.formattedAddress}`;
 
 			const marker = new window.google.maps.Marker({
 				position: { lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng },
@@ -65,7 +64,7 @@ class App extends Component {
 				title: eachVenue.venue.name
 			});
 
-			marker.addListener('click', function() {
+			marker.addListener('click', function () {
 				infowindow.setContent(contentString);
 
 				infowindow.open(map, marker);
@@ -75,9 +74,9 @@ class App extends Component {
 
 	render() {
 		return (
-      <main id="main">
-        <SideBar id="sideBar" />
+			<main id="main">
 				<div id="map" />
+				<SideBar id="sideBar" />
 			</main>
 		);
 	}
