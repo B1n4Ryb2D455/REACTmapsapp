@@ -58,10 +58,12 @@ class App extends Component {
 		this.state.venues.map((eachVenue) => {
 			const contentString = `${eachVenue.venue.name}` + `${eachVenue.venue.location.formattedAddress}`;
 
-			const marker = new window.google.maps.Marker({
+			let marker = new window.google.maps.Marker({
 				position: { lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng },
 				map: map,
-				title: eachVenue.venue.name
+				id: eachVenue.venue.id,
+				name: eachVenue.venue.name,
+				animation: window.google.maps.Animation.DROP
 			});
 
 			marker.addListener('click', function () {
