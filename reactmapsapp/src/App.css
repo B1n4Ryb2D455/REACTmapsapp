@@ -76,8 +76,13 @@ ul {
 }
 
 #sideBar {
-	height: 100vh;
-	width: 25vw;
+	 position: fixed;
+    top: 0;
+    left: 0;
+    width: 325px;
+    max-width: 100%;
+    height: 500px;
+    max-height: 100vh;
 }
 
 #search {

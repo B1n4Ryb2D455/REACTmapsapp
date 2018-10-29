@@ -1,112 +1,53 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
+import './styles.css';
+
+import { load_google_maps, load_places } from './funcs';
 
 
-// tutorial https://youtu.be/lDVaZY0aG2w
-// tutorial https://youtu.be/ywdxLNjhBYw
+ // tutorial https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
+ // tutorial https://youtu.be/lDVaZY0aG2w
+ // tutorial https://youtu.be/ywdxLNjhBYw
 
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			query: []
-		}
-	}
+    componentDidMount() {
+        let googleMapsPromise = load_google_maps();
+        let placesPromise = load_places();
 
-	componentDidMount() {
-		this.getVenues();
-	}
+        Promise.all([
+            googleMapsPromise,
+            placesPromise
+        ])
+        .then(values => {
+            let google = values[0];
+            let venues = values[1].response.venues;
 
-	renderMap = () => {
-		loadScript(
-			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBQowO9QXcPdkhyyemu370I_16x62BtX8k&callback=initMap'
-		);
-		window.initMap = this.initMap;
-	};
+            this.google = google;
+            this.markers = [];
 
-	getVenues = () => {
-		const endPoint = 'https://api.foursquare.com/v2/venues/explore?';
-		const parameters = {
-			client_id: 'IZB4KA3CRYVCJJYZF1MJGU23KJLOY1LTWKSDEH5YGGZLYQZQ',
-			client_secret: '3W5RLNDW2OKJJH4HH0CGI5SHMPQXMU0F3CN02ZHRQYOMD0FM',
-			query: 'sights',
-			near: 'Kennedy Space Center',
-			v: '20182507'
-		};
+            venues.forEach(venue => {
+                let marker = new google.maps.Marker({
+                    position: { lat: venue.location.lat, lng: venue.location.lng },
+                    map: this.map,
+                    venue: venue,
+                    id: venue.id,
+                    name: venue.name,
+                    animation: google.maps.Animation.DROP
+                });
+            });
 
-		axios
-			.get(endPoint + new URLSearchParams(parameters))
-			.then((response) => {
-				this.setState(
-					{
-						venues: response.data.response.groups[0].items
-					},
-					this.renderMap()
-				);
-			})
-			.catch((error) => {
-				console.log('ERROR ' + error);
-			});
-	};
+            console.log(values);
+        })
+    }
 
-	initMap = () => {
+    render() {
+        return (
+            <div id="map">
 
-			const map = new window.google.maps.Map(document.getElementById('map'), {
-			center: { lat: 28.5728722, lng: -80.6489808 },
-			scrollwhell: true,
-			zoom: 10
-		});
-
-		const infowindow = new window.google.maps.InfoWindow();
-
-		this.state.venues.map((eachVenue) => {
-			const contentString = `${eachVenue.venue.name}` + `${eachVenue.venue.location.formattedAddress}`;
-
-			let marker = new window.google.maps.Marker({
-				position: { lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng },
-				map: map,
-				id: eachVenue.venue.id,
-				name: eachVenue.venue.name,
-				animation: window.google.maps.Animation.DROP
-			});
-
-			marker.addListener('click', function () {
-				infowindow.setContent(contentString);
-
-				infowindow.open(map, marker);
-			});
-
-			console.log(eachVenue.venue);
-		});
-	};
-
-	filterVenues(query) {
-		console.log(query)
-	}
-
-	render() {
-		return (
-			<main id="main">
-				<div id="map">
-				</div>
-
-				<div id="sideBar">
-					<input value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
-				</div>
-			</main>
-		);
-	}
-}
-
-function loadScript(url) {
-	const index = window.document.getElementsByTagName('script')[0];
-	const script = window.document.createElement('script');
-	script.src = url;
-	script.async = true;
-	script.defer = true;
-	index.parentNode.insertBefore(script, index);
-}
+            </div>
+        );
+      }
+    }
 
 export default App;
