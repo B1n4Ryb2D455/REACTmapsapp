@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import SideBar from './SideBar';
+
 
 // tutorial https://youtu.be/lDVaZY0aG2w
 // tutorial https://youtu.be/ywdxLNjhBYw
 
 class App extends Component {
-	state = {
-		venues: []
-	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			query: []
+		}
+	}
 
 	componentDidMount() {
 		this.getVenues();
@@ -48,8 +52,10 @@ class App extends Component {
 	};
 
 	initMap = () => {
-		const map = new window.google.maps.Map(document.getElementById('map'), {
+
+			const map = new window.google.maps.Map(document.getElementById('map'), {
 			center: { lat: 28.5728722, lng: -80.6489808 },
+			scrollwhell: true,
 			zoom: 10
 		});
 
@@ -71,14 +77,24 @@ class App extends Component {
 
 				infowindow.open(map, marker);
 			});
+
+			console.log(eachVenue.venue);
 		});
 	};
+
+	filterVenues(query) {
+		console.log(query)
+	}
 
 	render() {
 		return (
 			<main id="main">
-				<div id="map" />
-				<SideBar id="sideBar" />
+				<div id="map">
+				</div>
+
+				<div id="sideBar">
+					<input value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
+				</div>
 			</main>
 		);
 	}
