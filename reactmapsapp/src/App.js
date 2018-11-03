@@ -33,6 +33,7 @@ class App extends Component {
 
             this.google = google;
             this.markers = [];
+            this.infowindow = new google.maps.InfoWindow();
             this.map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
                 scrollwheel: true,
@@ -56,7 +57,7 @@ class App extends Component {
                 });
 
                 google.maps.event.addListener(marker, 'click', () => {
-                    this.infoWindow.setContent(marker.name);
+                    this.infoWindow.setContent(venue.name);
                     // this.map.setZoom(13);
                     this.map.setCenter(marker.position);
                     this.infoWindow.open(this.map, marker);
@@ -66,19 +67,20 @@ class App extends Component {
                 this.markers.push(marker);
             });
 
-            this.setState({ filterVenues: this.venues });
+            this.setState({ filteredVenues: this.venues });
         })
 
     }
 
     filterVenues (query) {
+        let f = this.venues.filter( venue => venue.name.toLowerCase().includes(query.toLowerCase()));
         this.markers.forEach(marker => {
             marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
             marker.setVisible(true) :
             marker.setVisible(false);
         });
 
-        this.setState({ query });
+        this.setState({ filteredVenues: f });
     }
 
     render() {
@@ -91,8 +93,8 @@ class App extends Component {
                 <input value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
                 <br/>
                 {
-                    this.state.filterVenues && this.state.filterVenues.length > 0 && this.state.filterVenues.map((venue, index) => (
-                        <div className="venue-item">
+                    this.state.filteredVenues && this.state.filteredVenues.length > 0 && this.state.filteredVenues.map((venue, index) => (
+                        <div key={index} className="venue-item">
                             {venue.name}
                         </div>
                     ))
