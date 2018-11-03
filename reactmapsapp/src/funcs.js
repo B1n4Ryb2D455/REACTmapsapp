@@ -15,8 +15,8 @@ export function load_google_maps() {
 }
 
 export function load_places() {
-    let city = 'Kennedy Space Center';
-    let query = 'sights';
-    var apiURL = 'https://api.foursquare.com/v2/venues/explore?client_id=IZB4KA3CRYVCJJYZF1MJGU23KJLOY1LTWKSDEH5YGGZLYQZQ&client_secret=3W5RLNDW2OKJJH4HH0CGI5SHMPQXMU0F3CN02ZHRQYOMD0FM&v=20182507&limit=20&near=' + city + ' &query=' + query + '';
+    // let city = 'Kennedy Space Center';
+    // let query = 'sights';
+    var apiURL = 'https://api.foursquare.com/v2/venues/search?ll=28.5728722,-80.6489808&intent=checkin&radius=1000&%20query=sights&limit=20&client_id=IZB4KA3CRYVCJJYZF1MJGU23KJLOY1LTWKSDEH5YGGZLYQZQ&client_secret=3W5RLNDW2OKJJH4HH0CGI5SHMPQXMU0F3CN02ZHRQYOMD0FM&v=20182507';
     return fetch(apiURL).then(resp => resp.json())
 }

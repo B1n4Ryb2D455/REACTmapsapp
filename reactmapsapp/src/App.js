@@ -4,10 +4,9 @@ import './styles.css';
 
 import { load_google_maps, load_places } from './funcs';
 
-
- // tutorial https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
- // tutorial https://youtu.be/lDVaZY0aG2w
- // tutorial https://youtu.be/ywdxLNjhBYw
+// tutorial https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
+// tutorial https://youtu.be/lDVaZY0aG2w
+// tutorial https://youtu.be/ywdxLNjhBYw
 
 class App extends Component {
 
@@ -25,6 +24,11 @@ class App extends Component {
 
             this.google = google;
             this.markers = [];
+            this.map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                scrollwheel: true,
+                center: { lat: venues[0].location.lat, lng: venues[0].location.lng }
+            });
 
             venues.forEach(venue => {
                 let marker = new google.maps.Marker({
@@ -37,8 +41,8 @@ class App extends Component {
                 });
             });
 
-            console.log(values);
         })
+
     }
 
     render() {
@@ -47,7 +51,7 @@ class App extends Component {
 
             </div>
         );
-      }
     }
+}
 
 export default App;
