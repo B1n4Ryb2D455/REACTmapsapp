@@ -8,7 +8,7 @@ class sidebar extends Component {
 
     render() {
         return (
-            <div id="sidebar">
+            <sidebar id="sidebar">
                 <input placeholder="Filter Content" value={this.props.query} onChange={(e) => { this.props.filterVenues(e.target.value) }} />
                 <br />
                 {
@@ -18,7 +18,7 @@ class sidebar extends Component {
                         </div>
                     ))
                 }
-            </div>
+            </sidebar>
         )
     }
 }
