@@ -72,6 +72,11 @@ class App extends Component {
 
     }
 
+    listItemClick = (venue) => {
+        let marker = this.markers.filter(m => m.id === venue.id)[0];
+        console.log(marker);
+    }
+
     filterVenues (query) {
         let f = this.venues.filter( venue => venue.name.toLowerCase().includes(query.toLowerCase()));
         this.markers.forEach(marker => {
@@ -80,7 +85,7 @@ class App extends Component {
             marker.setVisible(false);
         });
 
-        this.setState({ filteredVenues: f });
+        this.setState({ filteredVenues: f, query });
     }
 
     render() {
@@ -90,11 +95,11 @@ class App extends Component {
 
             </div>
             <div id="sidebar">
-                <input value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
+                <input placeholder="Filter Content" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
                 <br/>
                 {
                     this.state.filteredVenues && this.state.filteredVenues.length > 0 && this.state.filteredVenues.map((venue, index) => (
-                        <div key={index} className="venue-item">
+                        <div key={index} className="venue-item" onClick={() => { this.listItemClick(venue) }}>
                             {venue.name}
                         </div>
                     ))
