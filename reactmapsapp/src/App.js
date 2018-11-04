@@ -64,8 +64,6 @@ class App extends Component {
                     });
 
                     this.markers.push(marker);
-                    console.log(marker.location);
-                    console.log(this.venues);
                 });
 
                 this.setState({ filteredVenues: this.venues });

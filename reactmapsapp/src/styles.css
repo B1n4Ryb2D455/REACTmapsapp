@@ -43,3 +43,7 @@ input#search {
 	margin-top: 10px;
 	width: 100%;
 }
+
+label.search-label {
+	display: none;
+}
