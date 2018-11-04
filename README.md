@@ -1,5 +1,5 @@
 # REACTmapsapp
-Final Project for the Udacity FEND nanodegree program, a single page REACT app using Google Maps API 
+Final Project for the Udacity FEND nanodegree program, a single page REACT app using Google Maps API and Foursquare API
 
 ## Ways to Interact or Develop:
 1. Fork the repository
