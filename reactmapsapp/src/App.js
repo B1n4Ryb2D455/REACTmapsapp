@@ -58,7 +58,7 @@ class App extends Component {
                     setTimeout(() => { marker.setAnimation(null) }, 1500);
                 });
                 google.maps.event.addListener(marker, 'click', () => {
-                    this.infowindow.setContent(marker.name);
+                    this.infowindow.setContent("<p>" + marker.name + "<br />" + marker.location + "</p>");
                     this.map.setCenter(marker.position);
                     this.infowindow.open(this.map, marker);
                });
@@ -75,7 +75,7 @@ class App extends Component {
 
     listItemClick = (venue) => {
         let marker = this.markers.filter(m => m.id === venue.id)[0];
-        this.infowindow.setContent(marker.name);
+        this.infowindow.setContent("<p>" + marker.name + "<br />" + marker.location + "</p>");
         this.map.setCenter(marker.position);
         this.infowindow.open(this.map, marker);
         console.log(marker);
