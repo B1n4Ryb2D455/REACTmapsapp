@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import Sidebar from './Components/Sidebar';
+import Map from './Components/Map';
 
 import { load_google_maps, load_places } from './funcs';
 
@@ -94,9 +95,7 @@ class App extends Component {
     render() {
         return (
             <div>
-            <div id="map">
-
-            </div>
+            <Map />
             <Sidebar
             filterVenues={this.filterVenues}
             filteredVenues={this.state.filteredVenues}
