@@ -47,7 +47,7 @@ class App extends Component {
                     map: this.map,
                     venue: venue,
                     id: venue.id,
-                    title: venue.name,
+                    name: venue.name,
                     location: venue.location.formattedAddress,
                     animation: google.maps.Animation.DROP
                 });
@@ -58,7 +58,7 @@ class App extends Component {
                     setTimeout(() => { marker.setAnimation(null) }, 1500);
                 });
                 google.maps.event.addListener(marker, 'click', () => {
-                    this.infowindow.setContent("<p>" + marker.title +"<br />" + marker.location + "</p>");
+                    this.infowindow.setContent(marker.name);
                     this.map.setCenter(marker.position);
                     this.infowindow.open(this.map, marker);
                });
