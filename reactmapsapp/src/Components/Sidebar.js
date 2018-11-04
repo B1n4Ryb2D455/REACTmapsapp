@@ -18,7 +18,7 @@ class sidebar extends Component {
                 <br />
                 {
                     this.props.filteredVenues && this.props.filteredVenues.length > 0 && this.props.filteredVenues.map((venue, index) => (
-                        <div key={index} className="venue-item" onClick={() => { this.props.listItemClick(venue) }}>
+                        <div key={index} className="venue-item" tabIndex={0} onClick={() => { this.props.listItemClick(venue) }}>
                             {venue.name}
                         </div>
                     ))
