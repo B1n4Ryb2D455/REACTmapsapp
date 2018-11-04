@@ -36,7 +36,7 @@ class App extends Component {
             this.markers = [];
             this.infowindow = new google.maps.InfoWindow();
             this.map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
+                zoom: 13,
                 scrollwheel: true,
                 center: { lat: this.venues[0].location.lat, lng: this.venues[0].location.lng }
             });

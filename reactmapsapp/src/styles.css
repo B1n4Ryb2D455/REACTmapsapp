@@ -33,12 +33,13 @@
 }
 
 div.venue-item {
-  font-size: inherit;
-    font-stretch: inherit;
+	font-size: inherit;
+	font-stretch: inherit;
 }
 
 input#search {
-  font-variant-caps: all-petite-caps;
-  text-align: center;
-      margin-top: 10px;
+	font-variant-caps: all-petite-caps;
+	text-align: center;
+	margin-top: 10px;
+	width: 100%;
 }
