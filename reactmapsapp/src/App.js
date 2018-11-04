@@ -73,6 +73,11 @@ class App extends Component {
 
     listItemClick = (venue) => {
         let marker = this.markers.filter(m => m.id === venue.id)[0];
+        this.infowindow.setContent(marker.name);
+        this.map.setZoom(13);
+        this.map.setCenter(marker.position);
+        this.infowindow.open(this.map, marker);
+        this.map.panBy(0, -125);
         console.log(marker);
     }
 
