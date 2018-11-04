@@ -28,48 +28,48 @@ class App extends Component {
             googleMapsPromise,
             placesPromise
         ])
-        .then(values => {
-            let google = values[0];
-            this.venues = values[1].response.venues;
+            .then(values => {
+                let google = values[0];
+                this.venues = values[1].response.venues;
 
-            this.google = google;
-            this.markers = [];
-            this.infowindow = new google.maps.InfoWindow();
-            this.map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
-                scrollwheel: true,
-                center: { lat: this.venues[0].location.lat, lng: this.venues[0].location.lng }
-            });
-
-            this.venues.forEach(venue => {
-                let marker = new google.maps.Marker({
-                    position: { lat: venue.location.lat, lng: venue.location.lng },
-                    map: this.map,
-                    venue: venue,
-                    id: venue.id,
-                    name: venue.name,
-                    location: venue.location.formattedAddress,
-                    animation: google.maps.Animation.DROP
+                this.google = google;
+                this.markers = [];
+                this.infowindow = new google.maps.InfoWindow();
+                this.map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 13,
+                    scrollwheel: true,
+                    center: { lat: this.venues[0].location.lat, lng: this.venues[0].location.lng }
                 });
 
-                marker.addListener('click', () => {
-                    if (marker.getAnimation() !== null) { marker.setAnimation(null); }
-                    else { marker.setAnimation(google.maps.Animation.BOUNCE); }
-                    setTimeout(() => { marker.setAnimation(null) }, 1500);
+                this.venues.forEach(venue => {
+                    let marker = new google.maps.Marker({
+                        position: { lat: venue.location.lat, lng: venue.location.lng },
+                        map: this.map,
+                        venue: venue,
+                        id: venue.id,
+                        name: venue.name,
+                        location: venue.location.formattedAddress,
+                        animation: google.maps.Animation.DROP
+                    });
+
+                    marker.addListener('click', () => {
+                        if (marker.getAnimation() !== null) { marker.setAnimation(null); }
+                        else { marker.setAnimation(google.maps.Animation.BOUNCE); }
+                        setTimeout(() => { marker.setAnimation(null) }, 1500);
+                    });
+                    google.maps.event.addListener(marker, 'click', () => {
+                        this.infowindow.setContent("<p>" + marker.name + "<br />" + marker.location + "</p>");
+                        this.map.setCenter(marker.position);
+                        this.infowindow.open(this.map, marker);
+                    });
+
+                    this.markers.push(marker);
+                    console.log(marker.location);
+                    console.log(this.venues);
                 });
-                google.maps.event.addListener(marker, 'click', () => {
-                    this.infowindow.setContent("<p>" + marker.name + "<br />" + marker.location + "</p>");
-                    this.map.setCenter(marker.position);
-                    this.infowindow.open(this.map, marker);
-               });
 
-                this.markers.push(marker);
-                console.log(marker.location);
-                console.log(this.venues);
-            });
-
-            this.setState({ filteredVenues: this.venues });
-        })
+                this.setState({ filteredVenues: this.venues });
+            })
 
     }
 
@@ -85,11 +85,11 @@ class App extends Component {
     }
 
     filterVenues = (query) => {
-        let f = this.venues.filter( venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+        let f = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
         this.markers.forEach(marker => {
             marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
-            marker.setVisible(true) :
-            marker.setVisible(false);
+                marker.setVisible(true) :
+                marker.setVisible(false);
         });
 
         this.setState({ filteredVenues: f, query });
@@ -98,12 +98,12 @@ class App extends Component {
     render() {
         return (
             <div id="app">
-            <Map />
-            <Sidebar
-            filterVenues={this.filterVenues}
-            filteredVenues={this.state.filteredVenues}
-            listItemClick={this.listItemClick}/>
-           </div>
+                <Map />
+                <Sidebar
+                    filterVenues={this.filterVenues}
+                    filteredVenues={this.state.filteredVenues}
+                    listItemClick={this.listItemClick} />
+            </div>
         );
     }
 }
