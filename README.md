@@ -10,7 +10,7 @@ Final Project for the Udacity FEND nanodegree program, a single page REACT app u
 ## Description
 An app where users can search a highlighted neighborhood's venues, select them, and see an infowindow displaying information about the venue.
 
-##Project Requirements
+## Project Requirements
 The project did not contain starter code, but was built from scratch and with the help of multiple tutorials and online help forums as well as the help of my classmates in the Udacity Slack channel.
 - be responsive 
 - work on multiple viewports
