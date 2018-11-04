@@ -57,12 +57,13 @@ class App extends Component {
                     setTimeout(() => { marker.setAnimation(null) }, 1500);
                 });
                 google.maps.event.addListener(marker, 'click', () => {
-                    this.infowindow.setContent(marker.name);
+                    this.infowindow.setContent(venue.name + venue.name);
                     this.map.setCenter(marker.position);
                     this.infowindow.open(this.map, marker);
-                });
+               });
 
                 this.markers.push(marker);
+                console.log(this.venues);
             });
 
             this.setState({ filteredVenues: this.venues });
