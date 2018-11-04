@@ -52,15 +52,14 @@ class App extends Component {
 
                 marker.addListener('click', () => {
                     if (marker.getAnimation() !== null) { marker.setAnimation(null); }
-                    else { marker.setAnimation(this.google.maps.Animation.BOUNCE); }
+                    else { marker.setAnimation(google.maps.Animation.BOUNCE); }
                     setTimeout(() => { marker.setAnimation(null) }, 1500);
                 });
-
                 google.maps.event.addListener(marker, 'click', () => {
-                    this.infoWindow.setContent(venue.name);
-                    // this.map.setZoom(13);
+                    this.infowindow.setContent(marker.name);
+                    this.map.setZoom(13);
                     this.map.setCenter(marker.position);
-                    this.infoWindow.open(this.map, marker);
+                    this.infowindow.open(this.map, marker);
                     this.map.panBy(0, -125);
                 });
 
