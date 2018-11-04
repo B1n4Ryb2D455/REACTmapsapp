@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
-
+import Sidebar from './Components/Sidebar';
 
 import { load_google_maps, load_places } from './funcs';
 
@@ -80,7 +80,7 @@ class App extends Component {
         setTimeout(() => { marker.setAnimation(null) }, 1500);
     }
 
-    filterVenues (query) {
+    filterVenues = (query) => {
         let f = this.venues.filter( venue => venue.name.toLowerCase().includes(query.toLowerCase()));
         this.markers.forEach(marker => {
             marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
@@ -97,17 +97,10 @@ class App extends Component {
             <div id="map">
 
             </div>
-            <div id="sidebar">
-                <input placeholder="Filter Content" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }}/>
-                <br/>
-                {
-                    this.state.filteredVenues && this.state.filteredVenues.length > 0 && this.state.filteredVenues.map((venue, index) => (
-                        <div key={index} className="venue-item" onClick={() => { this.listItemClick(venue) }}>
-                            {venue.name}
-                        </div>
-                    ))
-                }
-            </div>
+            <Sidebar
+            filterVenues={this.filterVenues}
+            filteredVenues={this.state.filteredVenues}
+            listItemClick={this.listItemClick}/>
            </div>
         );
     }
