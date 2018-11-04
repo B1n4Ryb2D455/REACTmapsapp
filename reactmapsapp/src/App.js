@@ -57,10 +57,8 @@ class App extends Component {
                 });
                 google.maps.event.addListener(marker, 'click', () => {
                     this.infowindow.setContent(marker.name);
-                    this.map.setZoom(13);
                     this.map.setCenter(marker.position);
                     this.infowindow.open(this.map, marker);
-                    this.map.panBy(0, -125);
                 });
 
                 this.markers.push(marker);
@@ -74,11 +72,12 @@ class App extends Component {
     listItemClick = (venue) => {
         let marker = this.markers.filter(m => m.id === venue.id)[0];
         this.infowindow.setContent(marker.name);
-        this.map.setZoom(13);
         this.map.setCenter(marker.position);
         this.infowindow.open(this.map, marker);
-        this.map.panBy(0, -125);
         console.log(marker);
+        if (marker.getAnimation() !== null) { marker.setAnimation(null); }
+        else { marker.setAnimation(this.google.maps.Animation.BOUNCE); }
+        setTimeout(() => { marker.setAnimation(null) }, 1500);
     }
 
     filterVenues (query) {
