@@ -97,7 +97,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div id="app">
             <Map />
             <Sidebar
             filterVenues={this.filterVenues}
