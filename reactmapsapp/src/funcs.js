@@ -1,3 +1,5 @@
+//tutorial https://www.youtube.com/watch?v=5J6fs_BlVC0&t=2262s
+
 export function load_google_maps() {
     return new Promise(function(resolve, reject) {
 
