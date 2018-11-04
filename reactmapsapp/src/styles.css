@@ -37,7 +37,7 @@ div.venue-item {
     font-stretch: inherit;
 }
 
-input {
+input#search {
   font-variant-caps: all-petite-caps;
   text-align: center;
       margin-top: 10px;
