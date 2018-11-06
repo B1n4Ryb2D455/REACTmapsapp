@@ -35,6 +35,7 @@ The project did not contain starter code, but was built from scratch and with th
 - click on a venue to display information
 - alternatively, you can tab to a venue or use the search input field to filter the venues and click the one you would like to see    information about 
 
-
+## Ofline use
+- The service worker for this project does not work in development, but will function in production
 
 
