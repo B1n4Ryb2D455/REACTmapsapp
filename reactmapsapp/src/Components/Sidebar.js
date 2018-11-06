@@ -10,7 +10,7 @@ class sidebar extends Component {
         return (
             <sidebar id="sidebar">
                 <form>
-                    <label class="search-label" for="search"> Search: </label>
+                    <label class="search-label" htmlFor="search"> Search: </label>
                     <input id="search" type="text" placeholder="Places to See" value={this.props.query} onChange={(e) => { this.props.filterVenues(e.target.value) }} />
                 </form>
 
