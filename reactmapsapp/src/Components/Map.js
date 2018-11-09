@@ -10,8 +10,8 @@ class Map extends Component {
     render() {
         return (
             <ErrorBoundary>
-            <main id="map">
-            </main>
+                <main id="map">
+                </main>
             </ErrorBoundary>
         )
 
