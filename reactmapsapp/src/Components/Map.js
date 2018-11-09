@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ErrorBoundary from './ErrorBoundary';
 
 class Map extends Component {
 
@@ -8,8 +9,10 @@ class Map extends Component {
 
     render() {
         return (
+            <ErrorBoundary>
             <main id="map">
             </main>
+            </ErrorBoundary>
         )
 
     }

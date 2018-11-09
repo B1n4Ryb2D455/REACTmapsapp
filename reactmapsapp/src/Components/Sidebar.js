@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ErrorBoundary from './ErrorBoundary';
 
 class sidebar extends Component {
 
@@ -8,6 +9,7 @@ class sidebar extends Component {
 
     render() {
         return (
+            <ErrorBoundary>
             <sidebar id="sidebar">
                 <form>
                     <label class="search-label" htmlFor="search"> Search: </label>
@@ -24,6 +26,7 @@ class sidebar extends Component {
                     ))
                 }
             </sidebar>
+            </ErrorBoundary>
         )
     }
 }
